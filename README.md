@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Simple Weather
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React weather-card app that displays current weather for a fixed location. Built with Material UI, Axios, moment.js and react-i18next for localization (including RTL support for Arabic).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- City name and current date/time
+- Large temperature display with weather description and min/max
+- Large weather icon (Material Icons)
+- English and Arabic (RTL) support using `react-i18next`
 
-### `npm start`
+## Libraries / Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (Create React App)
+- Material UI (`@mui/material`, `@mui/icons-material`)
+- axios
+- moment
+- i18next / react-i18next
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project files (important)
 
-### `npm test`
+- `src/App.js` — main UI and data fetching
+- `src/i18n.js` — i18next initialization
+- `src/index.js` — imports `src/i18n` before mounting `App`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup
 
-### `npm run build`
+1. Clone the repository and install dependencies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone <your-repo-url>
+cd simple-weather
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. OpenWeatherMap API key:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- This project calls OpenWeatherMap in `src/App.js` using an `appid` query parameter. Replace the existing key with your own, or add an environment variable (recommended):
 
-### `npm run eject`
+```env
+REACT_APP_OPENWEATHER_KEY=your_api_key_here
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Then update the request URL in `src/App.js` to use `process.env.REACT_APP_OPENWEATHER_KEY`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Start the app:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Open http://localhost:3000
 
-## Learn More
+## Localization / RTL
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `src/i18n.js` initializes translations and is imported in `src/index.js`.
+- Use the language toggle in the UI to switch between Arabic and English. The layout direction updates accordingly.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Troubleshooting
 
-### Code Splitting
+- If you get `i18n.changeLanguage is not a function`, ensure `src/i18n.js` is imported before `App` (see `src/index.js`).
+- If translations fail, check `public/locales/` or the backend used by `i18next-http-backend`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Customization
 
-### Analyzing the Bundle Size
+- Change the lat/lon in `src/App.js` to display another city.
+- Move inline styles to CSS files for finer control.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Next improvements (optional)
 
-### Making a Progressive Web App
+- Move API key to `.env` and use `process.env`.
+- Add unit tests and linting.
+- Make the location configurable via UI.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+MIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If you want, I can update the code to read the API key from `.env` and remove the hard-coded key from `src/App.js`.
