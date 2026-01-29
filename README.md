@@ -1,5 +1,26 @@
 # Simple Weather
 
+تطبيق React صغير يعرض حالة الطقس الحالية لموقع محدد. تم بناؤه باستخدام Material UI وaxios وmoment وreact-i18next لدعم اللغات (بما في ذلك RTL للغة العربية).
+
+## المميزات
+
+- عرض اسم المدينة والتاريخ/الوقت الحالي
+- عرض درجة الحرارة الحالية مع وصف الطقس والحد الأدنى/الأقصى
+- أيقونات الطقس كبيرة باستخدام Material Icons
+- دعم لغتيْن: العربية (RTL) والإنجليزية باستخدام `react-i18next`
+
+## المتطلبات
+
+- Node.js وnpm
+- مفتاح API من OpenWeatherMap
+
+## الإعداد السريع
+
+1. استنساخ المشروع وتثبيت الحزم:
+
+````bash
+# Simple Weather
+
 A small React weather-card app that displays current weather for a fixed location. Built with Material UI, Axios, moment.js and react-i18next for localization (including RTL support for Arabic).
 
 ## Features
@@ -9,21 +30,12 @@ A small React weather-card app that displays current weather for a fixed locatio
 - Large weather icon (Material Icons)
 - English and Arabic (RTL) support using `react-i18next`
 
-## Libraries / Stack
+## Requirements
 
-- React (Create React App)
-- Material UI (`@mui/material`, `@mui/icons-material`)
-- axios
-- moment
-- i18next / react-i18next
+- Node.js and npm
+- An OpenWeatherMap API key
 
-## Project files (important)
-
-- `src/App.js` — main UI and data fetching
-- `src/i18n.js` — i18next initialization
-- `src/index.js` — imports `src/i18n` before mounting `App`
-
-## Setup
+## Quick Setup
 
 1. Clone the repository and install dependencies:
 
@@ -31,17 +43,17 @@ A small React weather-card app that displays current weather for a fixed locatio
 git clone <your-repo-url>
 cd simple-weather
 npm install
-```
+````
 
-2. OpenWeatherMap API key:
+2. Environment variables (`.env`):
 
-- This project calls OpenWeatherMap in `src/App.js` using an `appid` query parameter. Replace the existing key with your own, or add an environment variable (recommended):
+Create a `.env` file in the project root and add your OpenWeatherMap key:
 
 ```env
 REACT_APP_OPENWEATHER_KEY=your_api_key_here
 ```
 
-Then update the request URL in `src/App.js` to use `process.env.REACT_APP_OPENWEATHER_KEY`.
+The app reads the key from `process.env.REACT_APP_OPENWEATHER_KEY`. If you have a hard-coded key in `src/App.js`, replace it to use the env variable.
 
 3. Start the app:
 
@@ -51,31 +63,23 @@ npm start
 
 Open http://localhost:3000
 
-## Localization / RTL
+## State / Redux note
 
-- `src/i18n.js` initializes translations and is imported in `src/index.js`.
-- Use the language toggle in the UI to switch between Arabic and English. The layout direction updates accordingly.
+State is managed locally in components; Redux is not configured in this project.
+If you want to add Redux quickly, run:
 
-## Troubleshooting
+```bash
+npm install @reduxjs/toolkit react-redux
+```
 
-- If you get `i18n.changeLanguage is not a function`, ensure `src/i18n.js` is imported before `App` (see `src/index.js`).
-- If translations fail, check `public/locales/` or the backend used by `i18next-http-backend`.
+Then create a basic `src/store.js`, wrap the app with `<Provider store={store}>` in `src/index.js`, and move shared state into slices using `@reduxjs/toolkit`.
 
-## Customization
+## Customization & Future Improvements
 
-- Change the lat/lon in `src/App.js` to display another city.
-- Move inline styles to CSS files for finer control.
-
-## Next improvements (optional)
-
-- Move API key to `.env` and use `process.env`.
-- Add unit tests and linting.
-- Make the location configurable via UI.
+- Make the displayed location (lat/lon) configurable via the UI
+- Persist language or city preferences locally
+- Improve error handling and loading states
 
 ## License
 
 MIT
-
----
-
-If you want, I can update the code to read the API key from `.env` and remove the hard-coded key from `src/App.js`.

@@ -1,9 +1,16 @@
 {
-	"hello world": "أهلا بالعالم",
+	"cairo": "القاهرة",
 	"min": "الصغرى",
 	"max": "الكبرى",
 	"light rain": "أمطار متوسطة",
 	"clear sky": "سماء صافية",
 	"few clouds": "سحب متوسطة",
-	"Riyadh": "الرياض"
+	"scattered clouds": "غيوم متناثرة",
+	"broken clouds": "غيوم متفرقة",
+	"shower rain": "زخات مطر",
+	"rain": "مطر",
+	"thunderstorm": "عاصفة رعدية",
+	"snow": "ثلج",
+	"mist": "ضباب"
+	
 }
